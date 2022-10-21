@@ -5,25 +5,23 @@ namespace _Client
 {
     public class AsteroidsDestructionSystem : IInitSystem, IRunSystem
     {
-        private readonly AsteroidsConfiguration _asteroidsConfiguration;
         private readonly AsteroidsFactoryService _factory;
         
-        private EcsFilter _asteroidsHitByBullet;
+        private EcsFilter _bigAsteroidsHitByBullet;
         private EcsFilter _asteroidsChipsHitByBullet;
         private EcsFilter _asteroidsHitByLaser;
 
-        public AsteroidsDestructionSystem(AsteroidsConfiguration asteroidsConfiguration, AsteroidsFactoryService factory)
+        public AsteroidsDestructionSystem(AsteroidsFactoryService factory)
         {
-            _asteroidsConfiguration = asteroidsConfiguration;
             _factory = factory;
         }
 
         public async Task Init(EcsSystems systems)
         {
-            _asteroidsHitByBullet = systems
+            _bigAsteroidsHitByBullet = systems
                 .GetWorld()
                 .Filter()
-                .With<Asteroid>().With<HitByBullet>().With<Velocity>().With<TransformRef>().Except<Chip>().Build();
+                .With<Asteroid>().With<HitByBullet>().With<Velocity>().With<TransformRef>().With<BigAsteroid>().Build();
 
             _asteroidsChipsHitByBullet = systems
                 .GetWorld()
@@ -38,7 +36,7 @@ namespace _Client
 
         public void Run(EcsSystems systems)
         {
-            foreach (var entity in _asteroidsHitByBullet)
+            foreach (var entity in _bigAsteroidsHitByBullet)
             {
                 CreateAsteroidChips(entity);
                 DestroyAsteroid(entity);
@@ -59,16 +57,17 @@ namespace _Client
         {
             var destroyedAsteroidTransform = destroyedAsteroid.GetComponent<TransformRef>().Ref;
             var destroyedAsteroidVelocity = destroyedAsteroid.GetComponent<Velocity>();
+            var bigAsteroid = destroyedAsteroid.GetComponent<BigAsteroid>();
             
-            for (var i = 0; i < _asteroidsConfiguration.ChipCount; i++)
+            for (var i = 0; i < bigAsteroid.ChipsCount; i++)
             {
                 var rotation = RandomizeRotation();
 
-                var asteroidChip = _factory.Create(destroyedAsteroidTransform.position, rotation, destroyedAsteroidVelocity.Amount * _asteroidsConfiguration.ChipSpeedModificator);
+                var asteroidChip = _factory.Create(destroyedAsteroidTransform.position, rotation, destroyedAsteroidVelocity.Amount * bigAsteroid.ChipsSpeedModifier);
                 asteroidChip.AddComponent<Chip>();
 
                 var view = asteroidChip.GetComponent<Asteroid>();
-                view.View.SetScale(_asteroidsConfiguration.ChipScaleModificator);
+                view.View.SetScale(bigAsteroid.ChipsScaleModifier);
             }
         }
 

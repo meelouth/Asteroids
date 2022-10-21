@@ -39,17 +39,28 @@ namespace _Client
 
             for (var i = 0; i < asteroidsCount; i++)
             {
-                var spawnResult = _spawnService.GenerateRandomPosition(_asteroidsConfiguration.SpawnDistance);
-                
-                var variance = Random.Range(-_asteroidsConfiguration.TrajectoryVariance, _asteroidsConfiguration.TrajectoryVariance);
-                
-                var angle = Mathf.Atan2(spawnResult.Direction.y, spawnResult.Direction.x) * Mathf.Rad2Deg + 90 + variance;
-                var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                
-                _factory.Create(spawnResult.Position, rotation, RandomizeSpeed());
+                SpawnAsteroid();
             }
         }
-        
+
+        private void SpawnAsteroid()
+        {
+            var spawnResult = _spawnService.GenerateRandomPosition(_asteroidsConfiguration.SpawnDistance);
+
+            var variance = Random.Range(-_asteroidsConfiguration.TrajectoryVariance,
+                _asteroidsConfiguration.TrajectoryVariance);
+
+            var angle = Mathf.Atan2(spawnResult.Direction.y, spawnResult.Direction.x) * Mathf.Rad2Deg + 90 + variance;
+            var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            var asteroidEntity = _factory.Create(spawnResult.Position, rotation, RandomizeSpeed());
+
+            var bigAsteroid = asteroidEntity.AddComponent<BigAsteroid>();
+            bigAsteroid.ChipsCount = _asteroidsConfiguration.ChipCount;
+            bigAsteroid.ChipsScaleModifier = _asteroidsConfiguration.ChipScaleModificator;
+            bigAsteroid.ChipsSpeedModifier = _asteroidsConfiguration.ChipSpeedModificator;
+        }
+
 
         private float RandomizeWaveTimer()
         {

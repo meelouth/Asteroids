@@ -5,13 +5,13 @@ namespace _Client
 {
     public class ShipTeleportSystem : IInitSystem, IRunSystem
     {
-        private readonly SceneData _sceneData;
+        private readonly Camera _camera;
 
         private EcsFilter _ships;
 
-        public ShipTeleportSystem(SceneData sceneData)
+        public ShipTeleportSystem(Camera camera)
         {
-            _sceneData = sceneData;
+            _camera = camera;
         }
 
         public async Task Init(EcsSystems systems)
@@ -54,7 +54,7 @@ namespace _Client
 
         private Vector3 GetWorldScreenBounds()
         {
-            var bounds = _sceneData.Camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, _sceneData.Camera.transform.position.z));
+            var bounds = _camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, _camera.transform.position.z));
 
             return bounds;
         }

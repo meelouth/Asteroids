@@ -15,7 +15,7 @@ MonoBehaviour:
   shipConfiguration:
     accelerationRate: 6
     decelerationRate: 5
-    maxSpeed: 4
+    maxSpeed: 6
     rotationSpeed: 180
     guns:
       primaryGun: {fileID: 11400000, guid: a931e28f8eed7b446a3909d7149d7ae1, type: 2}
@@ -23,17 +23,16 @@ MonoBehaviour:
   asteroidsConfiguration:
     minWaveDelay: 1
     maxWaveDelay: 3
-    minSpeed: 3
-    maxSpeed: 5
+    minSpeed: 2
+    maxSpeed: 4
     minAsteroidsInWave: 1
     maxAsteroidsInWave: 3
     spawnDistance: 15
     trajectoryVariance: 15
-    lifetime: 10
+    lifetime: 15
     chipCount: 2
     chipSpeedModificator: 1.1
     chipScaleModificator: 0.7
-    defaultAsteroidScale: 1
   playerScoringConfiguration:
     scoreByDestroyingObjective: 1
   ufoConfiguration:

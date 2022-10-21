@@ -33,7 +33,6 @@ namespace _Client
                 var go = Instantiate(_template);
                 obj = go.AddComponent<PoolObject>();
                 obj.CachedTransform.SetParent(root);
-                obj.CachedTransform.localScale = Vector3.one;
                 obj.SetContainer(this);
             }
 
@@ -51,6 +50,7 @@ namespace _Client
                 {
                     _storage.Push(poolObject);
                     poolObject.CachedTransform.SetParent(root, false);
+                    poolObject.CachedTransform.localScale = Vector3.one;
                 }
             }
         }

@@ -19,10 +19,9 @@ namespace _Client
 
         [SerializeField] private float lifetime;
 
-        [SerializeField] private float chipCount;
+        [SerializeField] private int chipCount;
         [SerializeField] private float chipSpeedModificator;
         [SerializeField] private float chipScaleModificator;
-        [SerializeField] private float defaultAsteroidScale;
 
         public float MinWaveDelay => minWaveDelay;
         public float MaxWaveDelay => maxWaveDelay;
@@ -38,8 +37,7 @@ namespace _Client
         public float SpawnDistance => spawnDistance;
 
         public float ChipScaleModificator => chipScaleModificator;
-        public float ChipCount => chipCount;
+        public int ChipCount => chipCount;
         public float ChipSpeedModificator => chipSpeedModificator;
-        public float DefaultAsteroidScale => defaultAsteroidScale;
     }
 }

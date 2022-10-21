@@ -13,26 +13,27 @@ namespace _Client
         [SerializeField] private PoolContainer bulletPool;
         [SerializeField] private PoolContainer ufoPool;
 
-        private ShipViewProvider shipViewProvider;
-        private EnvironmentSceneProvider environmentSceneProvider;
+        private ShipViewProvider _shipViewProvider;
+        private EnvironmentSceneProvider _environmentSceneProvider;
         
         private StateMachine _stateMachine;
         
         private async void Start()
         {
+            _stateMachine = new StateMachine();
+
             var world = new EcsWorld();
             var systems = new EcsSystems(world);
-            _stateMachine = new StateMachine();
             
             var spawnService = new SpawnService();
             var asteroidsFactory = new AsteroidsFactoryService(asteroidsPool, configuration.AsteroidsConfiguration, world);
             var gunsFactory = new GunsFactory(world);
             
-            shipViewProvider = new ShipViewProvider();
-            environmentSceneProvider = new EnvironmentSceneProvider();
+            _shipViewProvider = new ShipViewProvider();
+            _environmentSceneProvider = new EnvironmentSceneProvider();
 
             systems
-                .Register(new PlayerInitSystem(configuration.ShipConfiguration, shipViewProvider, 
+                .Register(new PlayerInitSystem(configuration.ShipConfiguration, _shipViewProvider, 
                     sceneData, gunsFactory))
 
                 .Register(new PlayerInputSystem())
@@ -45,7 +46,7 @@ namespace _Client
 
                 .Register(new PlayerShipRotationSystem())
 
-                .Register(new ShipTeleportSystem(sceneData))
+                .Register(new ShipTeleportSystem(sceneData.Camera))
 
                 .Register(new CollisionSystem<BulletView, Markers<HitByBullet, HitByPlayer>>())
                 .Register(new CollisionSystem<AsteroidView, Markers<HitByDanger>>())
@@ -60,9 +61,8 @@ namespace _Client
 
                 .Register(new OneFrameSystem<Triggered>())
 
-                .Register(
-                    new AsteroidsSpawnSystem(configuration.AsteroidsConfiguration, asteroidsFactory, spawnService))
-                .Register(new AsteroidsDestructionSystem(configuration.AsteroidsConfiguration, asteroidsFactory))
+                .Register(new AsteroidsSpawnSystem(configuration.AsteroidsConfiguration, asteroidsFactory, spawnService))
+                .Register(new AsteroidsDestructionSystem(asteroidsFactory))
 
                 .Register(new SpawnUFOSystem(ufoPool, configuration.UFOConfiguration, spawnService))
                 .Register(new UFODestructionSystem())
@@ -86,7 +86,7 @@ namespace _Client
                 .Register(new OneFrameSystem<HitByDanger>());
 
             var initializationState = new GameInitializationState(_stateMachine, systems, uiService, 
-                    environmentSceneProvider, asteroidsPool, bulletPool, ufoPool);
+                    _environmentSceneProvider, asteroidsPool, bulletPool, ufoPool);
             
             _stateMachine.SwitchState(initializationState);
         }
@@ -100,8 +100,8 @@ namespace _Client
         {
             _stateMachine?.Destroy();
             
-            shipViewProvider?.Unload();
-            environmentSceneProvider?.Unload();
+            _shipViewProvider?.Unload();
+            _environmentSceneProvider?.Unload();
 
             ReleasePools();
         }
