@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 59fb4704df0f2423e968095b29f9e639
+  m_SerializeEntries:
+  - m_GUID: cfd255adac0af4721897c3a3bff78fa9
+    m_Address: ShipView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9da8ad5e2a1c8254eb15d28d5a32796d
+    m_Address: AsteroidView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 8232028133f285141aa5d32b698b5990
+    m_Address: BulletView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 07ce85309448a7a478eedd0633226d29
+    m_Address: UFOView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4fee4dbb6208fb24f81a73e393313e50
+    m_Address: LaserGunUIView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 1477672627daebf418cafd8ae457a2a7
+    m_Address: LaserRay
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: aeb976886d85dd442ac41e39db0c372b
+    m_Address: EnvironmentScene
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3a589dcd664c04a46a13666165242f96, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 306d78a6728d74e698d115c3a54dc41a, type: 2}
+    - {fileID: 11400000, guid: f31d5f386c0184220a491ae948a9c2b0, type: 2}

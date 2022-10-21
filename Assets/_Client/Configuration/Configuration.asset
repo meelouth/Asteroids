@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce86d74e9f914a8195ecae612f297c08, type: 3}
+  m_Name: Configuration
+  m_EditorClassIdentifier: 
+  shipConfiguration:
+    accelerationRate: 6
+    decelerationRate: 5
+    maxSpeed: 4
+    rotationSpeed: 180
+    guns:
+      primaryGun: {fileID: 11400000, guid: a931e28f8eed7b446a3909d7149d7ae1, type: 2}
+      secondaryGun: {fileID: 11400000, guid: cb8da7b3ee9527f488cab7ddd29f8b0f, type: 2}
+  asteroidsConfiguration:
+    minWaveDelay: 1
+    maxWaveDelay: 3
+    minSpeed: 3
+    maxSpeed: 5
+    minAsteroidsInWave: 1
+    maxAsteroidsInWave: 3
+    spawnDistance: 15
+    trajectoryVariance: 15
+    lifetime: 10
+    chipCount: 2
+    chipSpeedModificator: 1.1
+    chipScaleModificator: 0.7
+    defaultAsteroidScale: 1
+  playerScoringConfiguration:
+    scoreByDestroyingObjective: 1
+  ufoConfiguration:
+    minWaveDelay: 1
+    maxWaveDelay: 6
+    minSpeed: 1
+    maxSpeed: 3
+    minUFOInWave: 1
+    maxUFOInWave: 2
+    rotationSpeed: 150
+    spawnDistance: 15
+    spawnWaveChance: 30
