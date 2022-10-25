@@ -8,6 +8,10 @@
  
  To configurate game settings - open Configuration.asset
  
+ Tested with Unity 2021.3.3f
+ 
+ &nbsp;
+ 
  Default key bindings:
  
  W - Move forward
@@ -20,5 +24,6 @@
  
  Left Control - Shoot with laser gun
  
+ &nbsp;
 
  Have fun!
