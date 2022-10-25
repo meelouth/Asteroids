@@ -14,12 +14,14 @@ namespace _Client
             _camera = camera;
         }
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _ships = systems
                 .GetWorld()
                 .Filter()
                 .With<TransformRef>().With<Player>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

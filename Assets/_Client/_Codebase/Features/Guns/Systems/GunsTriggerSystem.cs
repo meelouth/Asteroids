@@ -6,12 +6,14 @@ namespace _Client
     {
         private EcsFilter _playerGuns;
         
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _playerGuns = systems
                 .GetWorld()
                 .Filter()
                 .With<PlayerInput>().With<Armory>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

@@ -11,9 +11,9 @@ namespace _Client
             _systems = systems;
         }
 
-        public async Task Enter()
+        public Task Enter()
         {
-            
+            return Task.CompletedTask;
         }
 
         public void Run()

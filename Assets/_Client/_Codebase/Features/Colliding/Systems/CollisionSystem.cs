@@ -11,12 +11,14 @@ namespace _Client
 
         private EcsFilter _collided;
         
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _collided = systems
                 .GetWorld()
                 .Filter()
                 .With<Collision>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

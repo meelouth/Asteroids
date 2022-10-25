@@ -6,13 +6,15 @@ namespace _Client
     {
         private EcsFilter _destroyed;
         
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _destroyed = systems
                 .GetWorld()
                 .Filter()
                 .With<DestroyCommand>()
                 .Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

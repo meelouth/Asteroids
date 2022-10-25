@@ -15,12 +15,14 @@ namespace _Client
             _stateMachine = stateMachine;
         }
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _hitPlayerShips = systems
                 .GetWorld()
                 .Filter()
                 .With<Player>().With<HitByDanger>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

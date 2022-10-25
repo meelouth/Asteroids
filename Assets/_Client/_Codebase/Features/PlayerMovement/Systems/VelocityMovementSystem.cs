@@ -8,12 +8,14 @@ namespace _Client
     {
         private EcsFilter _underVelocity;
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _underVelocity = systems
                 .GetWorld()
                 .Filter()
                 .With<Velocity>().With<TransformRef>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

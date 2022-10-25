@@ -7,12 +7,14 @@ namespace _Client
     {
         private EcsFilter _followers;
         
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _followers = systems
                 .GetWorld()
                 .Filter()
                 .With<TransformRef>().With<Following>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

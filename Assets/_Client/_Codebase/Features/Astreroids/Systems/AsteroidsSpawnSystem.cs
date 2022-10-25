@@ -18,9 +18,11 @@ namespace _Client
             _spawnService = spawnService;
         }
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             SpawnWave();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

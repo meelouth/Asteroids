@@ -14,7 +14,7 @@ namespace _Client
             _configuration = configuration;
         }
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _destroyedPlayerObjectives = systems
                 .GetWorld()
@@ -25,6 +25,8 @@ namespace _Client
                 .GetWorld()
                 .Filter()
                 .With<Player>().With<Wallet>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

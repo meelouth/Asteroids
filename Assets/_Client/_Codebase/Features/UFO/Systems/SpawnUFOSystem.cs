@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,12 +20,14 @@ namespace _Client
             _spawnService = spawnService;
         }
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _players = systems
                 .GetWorld()
                 .Filter()
                 .With<TransformRef>().With<Player>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

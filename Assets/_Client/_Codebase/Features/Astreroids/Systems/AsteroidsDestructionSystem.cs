@@ -16,7 +16,7 @@ namespace _Client
             _factory = factory;
         }
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _bigAsteroidsHitByBullet = systems
                 .GetWorld()
@@ -32,6 +32,8 @@ namespace _Client
                 .GetWorld()
                 .Filter()
                 .With<Asteroid>().With<HitByLaser>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

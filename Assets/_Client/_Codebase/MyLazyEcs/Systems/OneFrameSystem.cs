@@ -6,12 +6,14 @@ namespace _Client
     {
         private EcsFilter _filter;
         
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _filter = systems
                 .GetWorld()
                 .Filter()
                 .With<T>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

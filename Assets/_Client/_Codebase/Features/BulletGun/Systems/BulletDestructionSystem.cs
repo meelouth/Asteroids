@@ -6,12 +6,14 @@ namespace _Client
     {
         private EcsFilter _hitBulletsByDanger;
         
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _hitBulletsByDanger = systems
                 .GetWorld()
                 .Filter()
                 .With<Bullet>().With<HitByDanger>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

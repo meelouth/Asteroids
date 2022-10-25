@@ -7,12 +7,14 @@ namespace _Client
     {
         private EcsFilter _lifetimes;
         
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _lifetimes = systems
                 .GetWorld()
                 .Filter()
                 .With<Lifetime>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

@@ -7,12 +7,14 @@ namespace _Client
     {
         private EcsFilter _ships;
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _ships = systems
                 .GetWorld()
                 .Filter()
                 .With<ShipMovement>().With<Velocity>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

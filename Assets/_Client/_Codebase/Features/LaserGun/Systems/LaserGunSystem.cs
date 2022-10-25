@@ -8,7 +8,7 @@ namespace _Client
         private EcsFilter _triggeredLaserGuns;
         private EcsFilter _laserGuns;
         
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _triggeredLaserGuns = systems
                 .GetWorld()
@@ -21,6 +21,8 @@ namespace _Client
                 .With<LaserGun>().Build();
 
             CreateLaserView();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)
@@ -54,7 +56,7 @@ namespace _Client
             }
         }
 
-        private static void KillHitThreats(RaycastHit[] hits)
+        private void KillHitThreats(RaycastHit[] hits)
         {
             foreach (var hit in hits)
             {

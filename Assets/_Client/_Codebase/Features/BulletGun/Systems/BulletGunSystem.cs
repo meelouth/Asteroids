@@ -14,12 +14,14 @@ namespace _Client
             _bulletPool = bulletPool;
         }
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _triggeredGuns = systems
                 .GetWorld()
                 .Filter()
                 .With<BulletGun>().With<Triggered>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

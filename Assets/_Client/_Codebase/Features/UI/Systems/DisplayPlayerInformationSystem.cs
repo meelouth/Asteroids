@@ -15,12 +15,14 @@ namespace _Client
             _ui.PlayerInformationWidget.Show();
         }
 
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             _players = systems
                 .GetWorld()
                 .Filter()
                 .With<Velocity>().With<Wallet>().With<TransformRef>().With<Player>().Build();
+            
+            return Task.CompletedTask;
         }
 
         public void Run(EcsSystems systems)

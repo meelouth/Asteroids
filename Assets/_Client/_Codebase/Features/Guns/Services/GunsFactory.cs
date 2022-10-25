@@ -16,8 +16,6 @@ namespace _Client
 
         public async Task<Entity> Create(GunConfiguration configuration, Transform muzzle)
         {
-            var entity = _world.CreateEntity();
-
             return configuration.Type switch
             {
                 GunType.BulletGun => await CreateBulletGun((BulletGunConfiguration) configuration, muzzle),
@@ -46,14 +44,15 @@ namespace _Client
             return laserGunEntity;
         }
 
-        private async Task<Entity> CreateBulletGun(BulletGunConfiguration bulletGunConfiguration, Transform muzzle)
+        private Task<Entity> CreateBulletGun(BulletGunConfiguration bulletGunConfiguration, Transform muzzle)
         {
             var bulletGunEntity = _world.CreateEntity();
             var bulletGun = bulletGunEntity.AddComponent<BulletGun>();
             bulletGun.Muzzle = muzzle;
             bulletGun.BulletSpeed = bulletGunConfiguration.BulletSpeed;
             bulletGun.BulletLifetime = bulletGunConfiguration.BulletLifetime;
-            return bulletGunEntity;
+            
+            return Task.FromResult(bulletGunEntity);
         }
     }
 }

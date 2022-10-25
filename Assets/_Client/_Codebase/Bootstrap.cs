@@ -18,7 +18,7 @@ namespace _Client
         
         private StateMachine _stateMachine;
         
-        private async void Start()
+        private void Start()
         {
             _stateMachine = new StateMachine();
 

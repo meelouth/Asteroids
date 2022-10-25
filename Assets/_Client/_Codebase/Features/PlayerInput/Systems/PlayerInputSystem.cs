@@ -9,7 +9,7 @@ namespace _Client
 
         private EcsFilter playerInputs;
         
-        public async Task Init(EcsSystems systems)
+        public Task Init(EcsSystems systems)
         {
             playerInputs = systems
                 .GetWorld()
@@ -17,6 +17,8 @@ namespace _Client
                 .With<PlayerInput>().Build();
             
             inputChannel.Enable();
+            
+            return Task.CompletedTask;
         }
         
         public void Run(EcsSystems systems)
